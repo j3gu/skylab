@@ -102,12 +102,10 @@ task HISAT2rsem {
       --rg PL:ILLUMINA --rg PU:${sample_name} \
       --new-summary --summary-file ${output_name}.log \
       --met-file ${output_name}.hisat2.met.txt --met 5 \
-      -k 10 \
+      --no-mixed \
       --mp 1,1 \
       --np 1 \
       --score-min L,0,-0.1 \
-      --secondary \
-      --no-mixed \
       --no-softclip \
       --no-discordant \
       --rdg 99999999,99999999 \
