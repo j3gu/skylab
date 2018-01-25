@@ -28,7 +28,7 @@ def parse_picard_to_table_by_sample(input_metrics_list,output_filename):
     tab.index=[sra_id]
     tab.to_csv(output_filename+'.metrics')
 
-def parse_picard_to_table_by_type(input_metrics_list,output_filename):
+def parse_picard_to_table_by_metrics(input_metrics_list,output_filename):
     mets={}
     with open(input_metrics_list) as f:
         for line in f:
