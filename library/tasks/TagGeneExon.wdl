@@ -14,6 +14,7 @@ task TagGeneExon {
       OUTPUT=bam_with_gene_exon.bam \
       SUMMARY=gene_exon_tag_summary.log \
       TAG=GE \
+      ALLOW_MULTI_GENE_READS=true \
       ANNOTATIONS_FILE=${annotations_gtf}
   }
 
