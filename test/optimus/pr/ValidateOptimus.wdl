@@ -19,7 +19,10 @@ task ValidateOptimus {
     # calculate hashes; awk is used to extract the hash from the md5sum output that contains both
     # a hash and the filename that was passed. gzipped files are unzipped to avoid hashing malleable
     # metadata
-    matrix_hash=$(md5sum "${matrix}" | awk '{print $1}')
+
+
+    unzip "${matrix}"
+    matrix_hash=$(find . -name "*.npy" -type f -exec md5sum {} \; | sort -k 2 | md5sum | awk '{print $1}')
     gene_metric_hash=$(zcat "${gene_metrics}" | md5sum | awk '{print $1}')
     cell_metric_hash=$(zcat "${cell_metrics}" | md5sum | awk '{print $1}')
 
