@@ -158,6 +158,8 @@ workflow Optimus {
   output {
       File bam = MergeSorted.output_bam
       File matrix = MergeCountFiles.sparse_count_matrix
+      File matrix_row_index = MergeCountFiles.row_index
+      File matrix_col_index = MergeCountFiles.col_index
       File cell_metrics = MergeCellMetrics.cell_metrics
       File gene_metrics = MergeGeneMetrics.gene_metrics
   }

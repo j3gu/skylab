@@ -140,5 +140,7 @@ task MergeCountFiles {
 
   output {
     File sparse_count_matrix = "sparse_counts.npz"
+    File col_index = "sparse_counts_col_index.npy"
+    File row_index = "sparse_counts_row_index.npy"
   }
 }
