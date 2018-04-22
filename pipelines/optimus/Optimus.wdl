@@ -153,6 +153,8 @@ workflow Optimus {
   call Count.MergeCountFiles {
     input:
       sparse_count_matrices = CreateSparseCountMatrix.sparse_count_matrix
+      row_indices = CreateSparseCountMatrix.row_index
+      col_indices = CreateSparseCountMatrix.col_index
   }
 
   output {

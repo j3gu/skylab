@@ -100,11 +100,15 @@ task CreateSparseCountMatrix {
 
   output {
     File sparse_count_matrix = "sparse_counts.npz"
+    File row_index = "sparse_counts_row_index.npy"
+    File col_index = "sparse_counts_col_index.npy"
   }
 }
 
 task MergeCountFiles {
   Array[File] sparse_count_matrices
+  Array[File] row_indices
+  Array[File] col_indices
 
   # runtime values
   String docker = "quay.io/humancellatlas/secondary-analysis-sctools:ajc-create-count-matrix"
@@ -127,7 +131,12 @@ task MergeCountFiles {
   }
 
   command {
-    MergeCountMatrices -o sparse_counts -i ${sep=' ' sparse_count_matrices}
+    prefixes=$(python <<CODE
+    matrices = [${sep=', ' sparse_count_matrices}]
+    print(' '.join(m.replace('.npz', '') for m in matrices))
+    CODE)
+
+    MergeCountMatrices -o sparse_counts -i $prefixes
   }
 
   runtime {
