@@ -14,6 +14,8 @@ task Attach10xBarcodes {
 
   meta {
     description: "attaches barcodes found in r1 (forward) and i1 (index) fastq files to corresponding reads in the r2 (reverse) bam file"
+    outputs: "bam file with attached 10x cell (CR), cell quality (CY), molecule (UR), and molecule quality (UY) barcodes."
+    notes: "i1 sample index is optional, as many 10x experiments do not generate a sample index file"
   }
 
   parameter_meta {
@@ -38,7 +40,7 @@ task Attach10xBarcodes {
       --output-bamfile barcoded.bam \
       --whitelist "${whitelist}"
   }
-  
+
   runtime {
     docker: docker
     memory: "${machine_mem_mb} MB"
@@ -46,7 +48,7 @@ task Attach10xBarcodes {
     cpu: cpu
     preemptible: preemptible
   }
-  
+
   output {
     File bam_output = "barcoded.bam"
   }

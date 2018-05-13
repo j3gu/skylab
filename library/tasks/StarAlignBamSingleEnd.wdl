@@ -12,6 +12,7 @@ task StarAlignBamSingleEnd {
 
   meta {
     description: "Aligns reads in bam_input to the reference genome in tar_star_reference"
+    outputs: "Unaligned bam file and alignment log"
   }
 
   parameter_meta {

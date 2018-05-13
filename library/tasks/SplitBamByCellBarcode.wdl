@@ -12,6 +12,7 @@ task SplitBamByCellBarcode {
 
   meta {
     description: "Splits a bam file into chunks of size_in_mb, guaranteeing that all information for each cell is fully contained in only one of the chunks"
+    outputs: "An array of smaller bam files"
   }
 
   parameter_meta {
@@ -33,7 +34,7 @@ task SplitBamByCellBarcode {
       --subfile-size ${size_in_mb} \
       --tags CB CR
   }
-  
+
   runtime {
     docker: docker
     memory: "${machine_mem_mb} MB"
@@ -41,7 +42,7 @@ task SplitBamByCellBarcode {
     cpu: cpu
     preemptible: preemptible
   }
-  
+
   output {
     Array[File] bam_output_array = glob("subfile_*")
   }

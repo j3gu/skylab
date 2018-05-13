@@ -36,7 +36,7 @@ task DropSeqToolsDigitalExpression {
       USE_STRAND_INFO=false \
       INPUT=${bam_input}
   }
-  
+
   runtime {
     docker: docker
     memory: "${machine_mem_mb} MB"
@@ -44,7 +44,7 @@ task DropSeqToolsDigitalExpression {
     cpu: cpu
     preemptible: preemptible
   }
-  
+
   output {
     File matrix_output = "digital_expression.txt.gz"
     File matrix_summary = "digital_expression_summary.txt"
@@ -65,6 +65,7 @@ task CreateSparseCountMatrix {
 
   meta {
     description: "Constructs a compressed sparse row matrix from a bam file containing reads marked with cell barcodes (CB), molecule barcodes (UB) and gene ids (GE)"
+    outputs: "(n_cells, n_genes) count matrix in compressed sparse row format, saved in .npy binary format"
   }
 
   parameter_meta {
@@ -119,6 +120,7 @@ task MergeCountFiles {
 
   meta {
     description: "Constructs a compressed sparse row matrix by concatenating multiple input matrices"
+    outputs: "single (n_cells, n_genes) count matrix in compressed sparse row format, saved as a .npy file"
   }
 
   parameter_meta {

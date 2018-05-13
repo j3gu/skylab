@@ -11,6 +11,7 @@ task TagGeneExon {
 
   meta {
     description: "Tags any read in bam_input that overlaps an intron or exon interval with the gene that those interals correspond to."
+    outputs: "Aligned Bam file additionally containing GE (gene) and XF (part of genome) tags"
   }
 
   parameter_meta {
@@ -42,9 +43,9 @@ task TagGeneExon {
     cpu: cpu
     preemptible: preemptible
   }
-  
+
   output {
     File bam_output = "bam_with_gene_exon.bam"
     File log = "gene_exon_tag_summary.log"
   }
-} 
+}

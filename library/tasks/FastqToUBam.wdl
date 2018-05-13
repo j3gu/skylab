@@ -15,6 +15,7 @@ task FastqToUBam {
 
   meta {
     description: "Converts a fastq file into an unaligned bam file."
+    outputs: "unaligned bam file"
   }
 
   parameter_meta {
@@ -43,7 +44,7 @@ task FastqToUBam {
       OUTPUT=bamfile.bam \
       SAMPLE_NAME="${sample_id}"
   }
-  
+
   runtime {
     docker: docker
     memory: "${machine_mem_mb} MB"
@@ -51,7 +52,7 @@ task FastqToUBam {
     cpu: cpu
     preemptible: preemptible
   }
-  
+
   output {
     File bam_output = "bamfile.bam"
   }

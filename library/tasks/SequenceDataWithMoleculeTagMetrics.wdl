@@ -10,6 +10,7 @@ task CalculateGeneMetrics {
 
   meta {
     description: "Calculate gene metrics from the reads in bam_input."
+    outputs: "tabular (n_metrics, genes) .csv matrix file containing metrics for each gene"
   }
 
   parameter_meta {
@@ -52,6 +53,7 @@ task CalculateCellMetrics {
 
   meta {
     description: "Calculate cell metrics from the reads in bam_input."
+    outputs: "tabular (n_metrics, cells) .csv matrix containing metrics for each cell"
   }
 
   parameter_meta {
@@ -95,6 +97,7 @@ task MergeGeneMetrics {
 
   meta {
     description: "Merge an array of gene metric files with the same metric categories and potentially overlapping sets of gene features"
+    outputs: "Single, tabular (n_metrics, n_genes) .csv matrix containing metrics for each gene"
   }
 
   parameter_meta {
@@ -137,6 +140,7 @@ task MergeCellMetrics {
 
   meta {
     description: "Concatenate multiple cell metrics files into a single matrix"
+    outputs: "Single, tabular (n_metrics, n_cells) .csv matrix containing metrics for each cell"
   }
 
   parameter_meta {

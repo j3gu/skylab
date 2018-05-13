@@ -13,6 +13,7 @@ task SortAndCorrectUmiMarkDuplicates {
 
   meta {
     description: "Iterates over reads in a bam file, marking duplicate reads by setting bit 0x400 in the SAM flag and correcting any barcodes with errors by storing the original barcode in tag UR."
+    outputs: "Aligned bam file with duplicates marked in the FLAG and corrected (UB) and raw (UR) molecule barcode tags"
   }
 
   parameter_meta {
@@ -45,7 +46,7 @@ task SortAndCorrectUmiMarkDuplicates {
       OUTPUT=duplicates_marked.bam \
       INPUT=sorted.bam
   }
-  
+
   runtime {
     docker: docker
     memory: "${machine_mem_mb} MB"
@@ -53,10 +54,10 @@ task SortAndCorrectUmiMarkDuplicates {
     cpu: cpu
     preemptible: preemptible
   }
-  
+
   output {
     File bam_output = "duplicates_marked.bam"
     File umi_metrics = "umi_metrics.txt"
     File duplicate_metrics = "duplicate_metrics.txt"
   }
-} 
+}

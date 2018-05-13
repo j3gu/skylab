@@ -10,6 +10,7 @@ task CellSortBam {
 
   meta {
     description: "Sort bam_input by cell, then molecule, then gene."
+    outputs: "Sorted bam file with records having the same cell stored contiguously"
   }
 
   parameter_meta {
@@ -20,13 +21,13 @@ task CellSortBam {
     disk: "(optional) the amount of disk space (GB) to provision for this task"
     preemptible: "(optional) if non-zero, request a pre-emptible instance and allow for this number of preemptions before running the task on a non preemptible machine"
   }
-  
+
   command {
     set -e
 
     samtools sort -t GE -t UB -t CB -o cell-sorted.bam "${bam_input}"
   }
-  
+
   runtime {
     docker: docker
     memory: "${machine_mem_mb} MB"
@@ -34,7 +35,7 @@ task CellSortBam {
     cpu: cpu
     preemptible: preemptible
   }
-  
+
   output {
     File bam_output = "cell-sorted.bam"
   }
@@ -52,6 +53,7 @@ task GeneSortBam {
 
   meta {
     description: "Sort bam_input by gene, then cell, then molecule."
+    outputs: "Sorted bam file with records of the same gene stored contiguously"
   }
 
   parameter_meta {

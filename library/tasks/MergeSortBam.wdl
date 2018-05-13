@@ -16,6 +16,7 @@ task MergeSortBamFiles {
 
   meta {
     description: "Merge multiple bam files in the specified sort order"
+    outputs: "Single bam file containing all of the input records"
   }
 
   parameter_meta {
