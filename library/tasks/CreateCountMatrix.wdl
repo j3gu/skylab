@@ -36,7 +36,7 @@ task DropSeqToolsDigitalExpression {
       USE_STRAND_INFO=false \
       INPUT=${bam_input}
   }
-  
+
   runtime {
     docker: docker
     memory: "${machine_mem_mb} MB"
@@ -44,7 +44,7 @@ task DropSeqToolsDigitalExpression {
     cpu: cpu
     preemptible: preemptible
   }
-  
+
   output {
     File matrix_output = "digital_expression.txt.gz"
     File matrix_summary = "digital_expression_summary.txt"
@@ -57,7 +57,7 @@ task CreateSparseCountMatrix {
   File gtf_file
 
   # runtime values
-  String docker = "quay.io/humancellatlas/secondary-analysis-sctools:ajc-count-matrix-class"
+  String docker = "quay.io/humancellatlas/secondary-analysis-sctools:0.1.10"
   Int machine_mem_mb = 7500
   Int cpu = 1
   Int disk = ceil((size(bam_input, "G") + size(gtf_file, "G")) * 4.0) + 1
@@ -111,7 +111,7 @@ task MergeCountFiles {
   Array[File] col_indices
 
   # runtime values
-  String docker = "quay.io/humancellatlas/secondary-analysis-sctools:ajc-count-matrix-class"
+  String docker = "quay.io/humancellatlas/secondary-analysis-sctools:0.1.10"
   Int machine_mem_mb = 7500
   Int cpu = 1
   Int disk = 20  # todo find out how to make this adaptive with Array[file] input
