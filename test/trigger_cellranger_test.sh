@@ -18,5 +18,6 @@ export CROMWELL_SECRETS
 
 cromwell-tools run \
   --wdl-file "${TEST_DIR}"/cellranger.wdl \
-  --inputs-json "${TEST_DIR}"/test_inputs.json
+  --inputs-json "${TEST_DIR}"/test_inputs.json \
+  --secrets-file "${CROMWELL_SECRETS}"
 
