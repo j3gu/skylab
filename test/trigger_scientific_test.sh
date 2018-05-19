@@ -17,3 +17,4 @@ cromwell-tools run \
   --wdl-file "${TEST_DIR}"/TestOptimusScientific.wdl \
   --dependencies-json "${TEST_DIR}"/dependencies.json \
   --inputs-json "${TEST_DIR}"/test_inputs.json
+

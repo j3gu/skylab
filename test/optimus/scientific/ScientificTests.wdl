@@ -4,8 +4,8 @@
 # themselves, as these files will be relatively small in the testing data.
 task TestBamRecordNumber {
   File bam
-  Int expected_records
-  Int required_disk = ceil(size(bam, "G") * 1.2)
+  File count_matrix
+  Int required_disk = ceil(size(bam, "G") * 2)
 
   command {
 
@@ -18,7 +18,7 @@ task TestBamRecordNumber {
         exit 1
     fi
   }
-  
+
   runtime {
     docker: "quay.io/humancellatlas/secondary-analysis-samtools:v0.2.2-1.6"
     cpu: 1
